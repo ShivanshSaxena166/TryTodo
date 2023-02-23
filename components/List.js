@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 const COLORS={primary:'#1f145c',white:'#fff',black:'#000000'};
 import {
   SafeAreaView, View,Text,FlatList,Alert} from 'react-native';
@@ -6,16 +6,18 @@ import {
 import ListItem from './ListItem';
 import {Todo,setTodo} from'../Todo'
 import {styles} from './styles1'
-
+import {contextTodo} from '../context/contextTodo'
+import {useContext} from 'react'
 export default function List({navigation,route})
 {
-    
    
-    React.useEffect(() => {
-      // getTodosFromUserDevice();
+  const[todoStateList,settodoStateList]=useContext(contextTodo)
+   
+    // React.useEffect(() => {
+    //   // getTodosFromUserDevice();
     
 
-    }, [{navigation}]);
+    // }, [{navigation}]);
   
     // React.useEffect(() => {
   
@@ -71,6 +73,7 @@ export default function List({navigation,route})
     return (
       <SafeAreaView
       style={{flex:1,backgroundColor:COLORS.white}} >
+       
         <View style={styles.header}>
        <Text style={{fontWeight:'bold',fontSize:20,color:COLORS.primary}}>TODO APP </Text>
        {/* <Icon name="delete" size={25} color="red" onPress={clearAllTodos} /> */}
@@ -78,9 +81,10 @@ export default function List({navigation,route})
        <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{padding: 20, paddingBottom: 100}}
-          data={Todo}
+          data={todoStateList}
           renderItem={({item}) => <ListItem  todo={item} markTodoComplete={markTodoComplete} deleteTodo={deleteTodo} />}
         />
+       
 
   
     </SafeAreaView>

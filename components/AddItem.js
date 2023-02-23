@@ -6,9 +6,12 @@ import uuid from 'react-native-uuid';
 const COLORS={primary:'#1f145c',white:'#fff',black:'#000000',Green:'#00FF00',red:'#FF0000'};
 import {styles} from './styles1'
 import * as RootNavigation from '../rootNavigation';
+import {contextTodo} from '../context/contextTodo'
+import {useContext} from 'react'
 export default function AddItem({ navigation }) {
   // const[todos,setTodos]=React.useState([[] 
   // ]);
+  const[todoStateList,settodoStateList]=useContext(contextTodo)
 
   const [textInputName, setTextInputName] = React.useState('');
   const [textInputAge, setTextInputAge] = React.useState('');
@@ -33,6 +36,29 @@ export default function AddItem({ navigation }) {
     setTextInputName('')
     setTextInputAge('')
     setTextInputDescription('')
+   var Y=[...todoStateList,newTodo]
+    console.log("Todo State List")
+    console.log(Y)
+    settodoStateList(Y)
+    console.log("check")
+//     const newTodos1 =todoStateList.filter(item=>{
+
+
+//       if(item.id=="d263af84-aa48-43ed-9442-cf51d1e2cfaf")
+      
+//       { 
+
+        
+
+        
+        
+// return item
+//       }
+     
+ 
+//     })
+    // console.log("Map successful")
+    // console.log(newTodos1)
    setTodo(newTodo)
    RootNavigation.navigate('List')
   

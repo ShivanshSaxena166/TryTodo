@@ -6,21 +6,24 @@ import {Todo,setTodo,delTodo,updateTodo} from'../Todo'
 const COLORS={primary:'#1f145c',white:'#fff',black:'#000000',Green:'#00FF00',red:'#FF0000'};
 import * as RootNavigation from '../rootNavigation';
 import {styles} from './styles1'
+import { contextTodo,contextItemDetails } from "../context/contextTodo";
+import {useContext} from 'react'
 
 export default function UpdateItem({navigation,route}) {
-    // const[todos,setTodos]=React.useState([[] 
-    // ]);
+  
+    const[todoStateList,settodoStateList]=useContext(contextTodo)
+    const[contextItemDetail,setcontextItemDetail]=useContext(contextItemDetails)
     const [textInputName, setTextInputName] = React.useState('');
     const [textInputAge, setTextInputAge] = React.useState('');
     const [textInputDescription, setTextInputDescription] = React.useState('');
     
    
     const update=()=>{
-        todoId=route.params.todoId
-        const newTodos =Todo.map(item=>{
+   
+        const newTodos =todoStateList.map(item=>{
 
 
-          if(item.id==todoId)
+          if(item.id==contextItemDetail.id)
           
           { 
 
@@ -32,7 +35,7 @@ export default function UpdateItem({navigation,route}) {
             if(textInputDescription!='')
           item.Description=textInputDescription
 
-            
+            setcontextItemDetail(item)
             
    return item
           }
@@ -40,7 +43,7 @@ export default function UpdateItem({navigation,route}) {
         })
           console.log("Update")
           console.log(newTodos)
-        updateTodo(newTodos);
+        settodoStateList(newTodos);
         RootNavigation.navigate('ItemDetails')
         }
   
@@ -51,12 +54,12 @@ export default function UpdateItem({navigation,route}) {
   <View style={{flex:1}}>
   <TouchableOpacity > 
   {/* <TouchableOpacity  onPress={() => navigation.navigate('ItemDetails',{ todoId:todo.id,todoName:todo.Name,todoAge:todo.Age,todoDescription:todo.Description })}>  */}
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}} >Name: {route.params.todoName}   </Text>
+  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}} >Name: {contextItemDetail.Name}   </Text>
  
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Age: {route.params.todoAge} </Text>
+  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Age: {contextItemDetail.Age} </Text>
 
 
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Description: {route.params.todoDescription} </Text>
+  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Description: {contextItemDetail.Description} </Text>
   </TouchableOpacity>
   </View>
   {/* {console.log(todo.completed)} */}

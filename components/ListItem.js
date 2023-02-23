@@ -9,18 +9,13 @@ import {styles} from './styles1'
 
 const ListItem=({todo, markTodoComplete,deleteTodo})=>{
   const navigation = useNavigation();
-
+  
    
-  // React.useEffect(() => {
-  //   saveTodoToUserDevice(todos);
-  // }, [todo]);
-
-// console.log(RootNavigation.navigate)
-
+ 
 
 return (<View style={styles.listitem}>
   <View style={{flex:1}}>
-  <TouchableOpacity  onPress={() => RootNavigation.navigate('ItemDetails', { todoId:todo.id,todoName:todo.Name,todoAge:todo.Age,todoDescription:todo.Description })}> 
+  <TouchableOpacity  onPress={() => RootNavigation.navigate('ItemDetails', { todoId:todo.id,todoName:todo.Name,todoAge:todo.Age,todoDescription:todo.Description,TODO:todo })}> 
   {/* <TouchableOpacity  onPress={() => navigation.navigate('ItemDetails',{ todoId:todo.id,todoName:todo.Name,todoAge:todo.Age,todoDescription:todo.Description })}>  */}
   <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary,textDecorationLine: todo?.completed?'line-through':'none'}} >Name: {todo.Name}   </Text>
  
@@ -30,7 +25,7 @@ return (<View style={styles.listitem}>
   <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary,textDecorationLine: todo?.completed?'line-through':'none'}}>Description: {todo.Description} </Text>
   </TouchableOpacity>
   </View>
-  {/* {console.log(todo.completed)} */}
+ 
 
 
 
