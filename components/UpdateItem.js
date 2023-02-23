@@ -41,7 +41,7 @@ export default function UpdateItem({navigation,route}) {
           console.log("Update")
           console.log(newTodos)
         updateTodo(newTodos);
-        RootNavigation.navigate('TodoApp')
+        RootNavigation.navigate('ItemDetails')
         }
   
    

@@ -34,7 +34,7 @@ export default function AddItem({ navigation }) {
     setTextInputAge('')
     setTextInputDescription('')
    setTodo(newTodo)
-   RootNavigation.navigate('TodoApp')
+   RootNavigation.navigate('List')
   
   }  
 
