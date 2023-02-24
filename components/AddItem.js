@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { TouchableOpacity } from 'react-native';
-import {  SafeAreaView,StyleSheet, View,Text,TextInput,FlatList,Alert} from "react-native";
+import {  SafeAreaView,StyleSheet, View,Text,TextInput} from "react-native";
 import {setTodo} from'../Todo'
 import uuid from 'react-native-uuid';
 const COLORS={primary:'#1f145c',white:'#fff',black:'#000000',Green:'#00FF00',red:'#FF0000'};
@@ -9,8 +9,7 @@ import * as RootNavigation from '../rootNavigation';
 import {contextTodo} from '../context/contextTodo'
 import {useContext} from 'react'
 export default function AddItem({ navigation }) {
-  // const[todos,setTodos]=React.useState([[] 
-  // ]);
+
   const[todoStateList,settodoStateList]=useContext(contextTodo)
 
   const [textInputName, setTextInputName] = React.useState('');
@@ -19,46 +18,19 @@ export default function AddItem({ navigation }) {
   
 
   const addTodo=()=>{
-    
-//   if(!exceptionHandling.checkTypes(textInputName,textInputAge,textInputDescription))
-//   {   Alert.alert("Error","Please enter valid Input")
-// return;
-//   }
+
     const newTodo={
     
-     id:uuid.v4(),
-     Name:textInputName,
-     Age:textInputAge,
-     Description:textInputDescription,
-     completed:false,
+     id:uuid.v4(),Name:textInputName,Age:textInputAge,Description:textInputDescription,completed:false,
      
     };
     setTextInputName('')
     setTextInputAge('')
     setTextInputDescription('')
    var Y=[...todoStateList,newTodo]
-    console.log("Todo State List")
-    console.log(Y)
-    settodoStateList(Y)
-    console.log("check")
-//     const newTodos1 =todoStateList.filter(item=>{
+    
+   settodoStateList(Y)
 
-
-//       if(item.id=="d263af84-aa48-43ed-9442-cf51d1e2cfaf")
-      
-//       { 
-
-        
-
-        
-        
-// return item
-//       }
-     
- 
-//     })
-    // console.log("Map successful")
-    // console.log(newTodos1)
    setTodo(newTodo)
    RootNavigation.navigate('List')
   
@@ -79,7 +51,7 @@ export default function AddItem({ navigation }) {
     </View>
     <TouchableOpacity onPress={addTodo}>
       <View style={styles.iconContainer}>
-      {/* <Icon name="add" color="white" size={30} /> */}
+   
       <Text>Add</Text>
     
       </View>
@@ -88,3 +60,7 @@ export default function AddItem({ navigation }) {
      </SafeAreaView>
   );
 }
+export const AddItemstyles = StyleSheet.create({
+  
+ 
+ });

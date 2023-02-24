@@ -1,9 +1,11 @@
 import React from "react";
 import { Button, View, Text } from "react-native";
+import {
+  StyleSheet} from 'react-native';
 
 export default function ListItems({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.listitemsStyles}>
    
       <Button 
         title="ListItems"
@@ -17,3 +19,13 @@ export default function ListItems({ navigation }) {
     </View>
   );
 }
+
+
+export const styles = StyleSheet.create({
+listitemsStyles:
+{
+  flex: 1, alignItems: "center", justifyContent: "center"
+}
+   });
+
+

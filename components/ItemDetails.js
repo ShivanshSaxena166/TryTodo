@@ -2,15 +2,13 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from 'react-native';
 import {  SafeAreaView,StyleSheet, View,Text,TextInput,FlatList,Alert,Button} from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Todo,setTodo,delTodo} from'../Todo'
-import uuid from 'react-native-uuid';
 const COLORS={primary:'#1f145c',white:'#fff',black:'#000000',Green:'#00FF00',red:'#FF0000'};
 import * as RootNavigation from '../rootNavigation';
 import {styles} from './styles1'
 import { useState ,useEffect } from 'react'
 import { contextItemDetails,contextTodo } from "../context/contextTodo";
 import {useContext} from 'react'
+
 
 export default function ItemDetails({navigation,route}){
 
@@ -20,10 +18,10 @@ export default function ItemDetails({navigation,route}){
     setcontextItemDetail(route.params.TODO);
   }, []);
   // console.log(contextItemDetails)
-  console.log("TODO")
-  console.log(route.params.TODO)
-  console.log("Iding")
-  console.log(contextItemDetail.id)
+  // console.log("TODO")
+  // console.log(route.params.TODO)
+  // console.log("Iding")
+  // console.log(contextItemDetail.id)
 
     // console.log("In ItemDetails")
     // console.log(route.params.todoName);
@@ -32,7 +30,7 @@ export default function ItemDetails({navigation,route}){
 
     const deleteTodo = () => {
         // todoId=route.params.todoId
-        var newTodosItem = Todo.filter(item => item.id != contextItemDetail.id);
+        var newTodosItem = todoStateList.filter(item => item.id != contextItemDetail.id);
         // console.log("Nee");
         // console.log(newTodosItem)
         settodoStateList(newTodosItem);
@@ -43,15 +41,15 @@ return(
     <SafeAreaView>
 
 <View style={styles.listitem}>
-  <View style={{flex:1}}>
+  <View style={Itemstyles.viewStyle}>
   <TouchableOpacity > 
   {/* <TouchableOpacity  onPress={() => navigation.navigate('ItemDetails',{ todoId:todo.id,todoName:todo.Name,todoAge:todo.Age,todoDescription:todo.Description })}>  */}
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}} >Name: {contextItemDetail.Name}   </Text>
+  <Text style={Itemstyles.textStyle} >Name: {contextItemDetail.Name}   </Text>
  
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Age: {contextItemDetail.Age} </Text>
+  <Text style={Itemstyles.textStyle}>Age: {contextItemDetail.Age} </Text>
 
 
-  <Text style={{fontWeight:'bold', fontSize:15, color:COLORS.primary}}>Description: {contextItemDetail.Description} </Text>
+  <Text style={Itemstyles.textStyle}>Description: {contextItemDetail.Description} </Text>
   </TouchableOpacity>
   </View>
   {/* {console.log(todo.completed)} */}
@@ -65,7 +63,7 @@ return(
    
       <Button 
         title="Update"
-        onPress={() => RootNavigation.navigate('UpdateItem', { todoId:route.params.todoId,todoName:route.params.todoName,todoAge:route.params.todoAge,todoDescription:route.params.todoDescription })}
+        onPress={() => RootNavigation.navigate('UpdateItem')}
       />
      
         <Button
@@ -76,3 +74,14 @@ return(
     </SafeAreaView>
 )
 }
+
+
+export const Itemstyles = StyleSheet.create({
+ textStyle:{
+  fontWeight:'bold', fontSize:15, color:COLORS.primary
+ },
+ viewStyle:{
+  flex:1
+ }
+
+   });
